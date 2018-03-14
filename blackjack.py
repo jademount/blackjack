@@ -73,10 +73,22 @@ class Chips:
     def take_bet(bets):
         self.bet=bets
 
-def hit(deck,hand):
+def comparedealer(points):
+    if points==21:
+        return True
+    else:
+        return False
 
-    pass
+def printcards(hand):
+    for card in hand.cards[]:
+        print(card)
+
+
+
 while True:
+    playerpoint=0
+    dealerpoint=0
+    hityn=""
     # Print an opening statement
 
 
@@ -86,12 +98,14 @@ while True:
     dealerhand=Hand()
     dealerhand.add_card(deck1.deal())
     dealerhand.add_card(deck1.deal())
+    dealerpoint=dealerhand.adjust_for_ace()
     print("dealer's hand")
     print("??????????")
     print(dealerhand.card[1])
     playerhand=Hand()
     playerhand.add_card(deck1.deal())
     playerhand.add_card(deck1.deal())
+    playerpoint=playerhand.adjust_for_ace()
     print("player's hand")
     print(playerhand.card[0])
     print(playerhand.card[1])
@@ -104,8 +118,8 @@ while True:
     # Show cards (but keep one dealer card hidden)
     print("dealer's card: ????????? , %s" % dealerhand.cards[1]))
     print("player's card: %s, %s" %(playerhand.cards[0], playerhand.cards[1]))
-    if playerhand.adjust_for_ace()==21:
-        if dealerhand.adjust_for_ace()==21:
+    if playerpoint==21:
+        if dealerpoint==21:
             print('tie, player and dealer both have 21 ')
             print("dealer's card: %s , %s" %(dealerhand.cards[0],dealerhand.cards[1]))
             print("player has %s chips now" % playerchip.total)
@@ -115,6 +129,36 @@ while True:
             playerchip.win_bet()
             print("player has %s chips now" % playerchip.total)
     else:
+        while playerpoint<21:
+            hityn=input("Hit?(y or n): ")
+            if hityn=="y":
+                playerhand.add_card(deck1.deal())
+                playerpoint=playerhand.adjust_for_ace()
+                print("player's card: ")
+                printcards(playerhand)
+                if playerpoint<21:
+                    continue
+                elif playerpoint==21:
+                    if comparedealer(dealerpoint):
+                        print('tie, player and dealer both have 21 ')
+                        print("dealer's card: ")
+                        printcards(dealerhand)
+                        print("player has %s chips now" % playerchip.total)
+                    else:
+                        print('player wins')
+                        print('dealer\'s cards:')
+                        printcards(dealerhand)
+                        playerchip.win_bet()
+                        print("player has %s chips now" % playerchip.total)
+                else:
+                    player_busts
+            elif hityn=="n":
+                while dealerpoint<17:
+                    dealerhand.add_card(deck1.deal)
+                    dealerpoint
+
+
+
 
     while playing:  # recall this variable from our hit_or_stand function
 
