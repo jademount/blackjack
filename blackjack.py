@@ -15,7 +15,7 @@ class Card:
         return "%s of %s" %(self.suit, self.rank)
         #print(self.rank)
 
-c=Card(suit=suits[0],rank=ranks[0])
+#c=Card(suit=suits[0],rank=ranks[0])
 #print(c)
 
 class Deck:
@@ -36,10 +36,6 @@ class Deck:
         random.shuffle(self.deck)
 
     def deal(self):
-        return self.deck.pop()
-
-testdeck=Deck()
-print(testdeck)
 
 class Hand:
     def __init__(self):
@@ -151,7 +147,10 @@ while True:
                         playerchip.win_bet()
                         print("player has %s chips now" % playerchip.total)
                 else:
-                    player_busts
+                    print('player busts')
+                    playerchip.lose_bet()
+                    print("player has %s chips now" % playerchip.total)
+
             elif hityn=="n":
                 while dealerpoint<17:
                     dealerhand.add_card(deck1.deal)
