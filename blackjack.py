@@ -146,42 +146,33 @@ while True:
                         printcards(dealerhand)
                         playerchip.win_bet()
                         print("player has %s chips now" % playerchip.total)
+
                 else:
                     print('player busts')
                     playerchip.lose_bet()
                     print("player has %s chips now" % playerchip.total)
 
             elif hityn=="n":
-                while dealerpoint<17:
-                    dealerhand.add_card(deck1.deal)
-                    dealerpoint
+                while dealerpoint<17 and dealerpoint<playerpoint:
+                    dealerhand.add_card(deck1.deal())
+                    printcards(dealerhand)
+                    dealerpoint=dealerhand.adjust_for_ace()
+                if dealerpoint>21:
+                    print("dealer busts!")
+                    printcards(dealerhand)
+                    playerchip.win_bet()
+                    print("player has %s chips now" % playerchip.total)
+                elif dealerpoint==21:
+                    print('dealer has blackjack!')
+                    playerchip.lose_bet()
+                    print("player has %s chips now" % playerchip.total)
+                elif dealerpoint<21 and dealerpoint>playerpoint:
+                    print('dealer wins')
+                    playerchip.lose_bet()
+                    print("player has %s chips now" % playerchip.total)
 
-
-
-
-    while playing:  # recall this variable from our hit_or_stand function
-
-
-        # Prompt for Player to Hit or Stand
-
-        # Show cards (but keep one dealer card hidden)
-
-
-        # If player's hand exceeds 21, run player_busts() and break out of loop
-
-
-            break
-
-    # If Player hasn't busted, play Dealer's hand until Dealer reaches 17
-
-
-        # Show all cards
-
-        # Run different winning scenarios
-
-
-    # Inform Player of their chips total
-
-    # Ask to play again
-
-        break
+    againyn=input("play again? (y/n)")
+    if againyn=="y":
+        continue
+    elif againyn=="n":
+        sys.exit()
