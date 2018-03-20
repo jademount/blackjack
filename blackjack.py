@@ -85,6 +85,7 @@ def comparedealer(points):
         return False
 
 
+
 def printcards(hand):
     for card in hand.cards:
         print(card)
