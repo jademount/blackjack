@@ -57,7 +57,7 @@ class Hand:
         self.aces=0
         for c in self.cards:
             self.value += values[c.rank]
-            if c.rank == 'Aces':
+            if c.rank == 'Ace':
                 self.aces += 1
         if self.aces == 1:
             if self.value > 21:
@@ -187,7 +187,13 @@ while True:
                     playerchip.lose_bet()
                     print("player has %s chips now" % playerchip.total)
                     break
-                elif dealerpoint > 17 and dealerpoint == playerpoint:
+                elif dealerpoint >= 17 and dealerpoint == playerpoint:
+                    print('player and dealer tie')
+                    print("dealer's point: %s" % dealerpoint)
+                    printcards(dealerhand)
+                    print("player has %s chips now" % playerchip.total)
+                    break
+                elif 17 <= dealerpoint < playerpoint:
                     print('player and dealer tie')
                     print("dealer's point: %s" % dealerpoint)
                     printcards(dealerhand)
