@@ -194,7 +194,7 @@ while True:
                     print("player has %s chips now" % playerchip.total)
                     break
                 elif 17 <= dealerpoint < playerpoint:
-                    print('player and dealer tie')
+                    print('player wins')
                     print("dealer's point: %s" % dealerpoint)
                     printcards(dealerhand)
                     print("player has %s chips now" % playerchip.total)
